@@ -1,5 +1,6 @@
-const Banner = ({tokenDetails}) => {
+const Banner = ({tokenDetails, crowdsaleDetails}) => {
     let { _totalSupply, _name, _symbol, _decimals, _contract_address } = tokenDetails;
+    let { _rate } = crowdsaleDetails;
     console.log(_name)
     return ( 
         
@@ -43,7 +44,7 @@ const Banner = ({tokenDetails}) => {
                     </div>
                     <div className="col-sm-8 col-md-4 col-lg-5 bid-main d-none d-sm-block order-md-1 my-2 mx-2 mx-lg-3">
                       <p className="bid body-mb">Pre-sale Price</p>
-                      <h3 className="heading-h2 bid-head">10,000 OS</h3>
+                      <h3 className="heading-h2 bid-head">{_rate} {_symbol}</h3>
                       <p className="dollor body-mb">= 1 ETH</p>
                     </div>
                   </div>

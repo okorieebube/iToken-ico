@@ -164,7 +164,7 @@ const Home = () => {
               </div>
             </div>
           </div>
-          <Banner tokenDetails={tokenDetails} />
+          <Banner tokenDetails={tokenDetails}  crowdsaleDetails={crowdsaleDetails}/>
         </div>
       </div>
       <AboutToken tokenDetails={tokenDetails}/>
