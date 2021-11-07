@@ -8,18 +8,21 @@ var networkId, deployedNetwork;
   deployedNetwork = crowdsale.networks[networkId];
 })();
 
-
-
-
 // 1 ETH equals rate
 export const rate = async () => {
-  const contract = new web3.eth.Contract(crowdsale.abi, deployedNetwork.address);
+  const contract = new web3.eth.Contract(
+    crowdsale.abi,
+    deployedNetwork.address
+  );
+  console.log("kirk!");
   return await contract.methods.rate().call();
 };
 
 // wallet to pay to
 export const wallet = async () => {
-    const contract = new web3.eth.Contract(crowdsale.abi, deployedNetwork.address);
-    return await contract.methods.wallet().call();
-  };
-  
+  const contract = new web3.eth.Contract(
+    crowdsale.abi,
+    deployedNetwork.address
+  );
+  return await contract.methods.wallet().call();
+};

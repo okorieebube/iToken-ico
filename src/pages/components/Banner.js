@@ -1,7 +1,6 @@
 const Banner = ({tokenDetails, crowdsaleDetails}) => {
     let { _totalSupply, _name, _symbol, _decimals, _contract_address } = tokenDetails;
     let { _rate } = crowdsaleDetails;
-    console.log(_name)
     return ( 
         
         <div>

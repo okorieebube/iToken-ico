@@ -6,25 +6,26 @@ import { fetchCrowdsaleDetails } from "../providers/redux/_actions/crowdsale-act
 import Banner from "./components/Banner";
 import AboutToken from "./components/AboutToken";
 
-
-
-
 const Home = () => {
   const dispatch = useDispatch();
 
   const { success: token } = useSelector((state) => state.FetchTokenArtifact);
   const [tokenDetails, setTokenDetails] = useState({});
 
-  
-  const { data: crowdsale } = useSelector((state) => state.FetchCrowdsaleArtifact);
+  const { data: crowdsale } = useSelector(
+    (state) => state.FetchCrowdsaleArtifact
+  );
   const [crowdsaleDetails, setCrowdsaleDetails] = useState({});
 
   useEffect(() => {
     token && setTokenDetails(token);
   }, [token]);
 
-  
   useEffect(() => {
+    if (crowdsale) {
+      console.log(crowdsale)
+    }
+    
     crowdsale && setCrowdsaleDetails(crowdsale);
   }, [crowdsale]);
 
@@ -164,11 +165,17 @@ const Home = () => {
               </div>
             </div>
           </div>
-          <Banner tokenDetails={tokenDetails}  crowdsaleDetails={crowdsaleDetails}/>
+          <Banner
+            tokenDetails={tokenDetails}
+            crowdsaleDetails={crowdsaleDetails}
+          />
         </div>
       </div>
-      <AboutToken tokenDetails={tokenDetails}/>
-      <Crowdsale crowdsaleDetails={crowdsaleDetails}  tokenDetails={tokenDetails}/>
+      <AboutToken tokenDetails={tokenDetails} />
+      <Crowdsale
+        crowdsaleDetails={crowdsaleDetails}
+        tokenDetails={tokenDetails}
+      />
       <div
         id="airdrop"
         className="work-main-home2 justify-content-center"

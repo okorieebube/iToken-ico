@@ -19,7 +19,7 @@ const Crowdsale = ({crowdsaleDetails, tokenDetails}) => {
             <div>
               <p className="mb-2">Minted supply: {_totalSupply}</p>
               <p className="mb-2">
-                Pre-sale address:
+                Crowdsale address:
                 <span className="text-primary copy text-break">
                   {_wallet}
                 </span>{" "}
@@ -31,7 +31,7 @@ const Crowdsale = ({crowdsaleDetails, tokenDetails}) => {
                   <i className="icofont-ui-copy" />
                 </a>
               </p>
-              <p className="mb-2">Pre-sale price: 1 ETH = {_rate} ITK</p>
+              <p className="mb-2">Crowdsale price: 1 ETH = {_rate} ITK</p>
               <p className="mb-2">
                 *The minimum purchase is 0.1 ETH, and the maximum purchase is 10
                 ETH.
