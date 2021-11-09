@@ -16,7 +16,7 @@ export const fetchCrowdsaleDetails = () => (dispatch) => {
 
     CrowdsaleService.fetch_details()
     .then((response) => {
-        // console.log({response})
+        console.log({response})
       return dispatch({
         type: FETCH_DETAILS_SUCCESS,
         payload: response

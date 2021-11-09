@@ -6,25 +6,24 @@ import {
   decimals,
   contract_address,
 } from "../../lib/web3/contracts/token_methods";
+import { loadWeb3 } from "../../lib/web3/load-web3";
 
-export  const TokenService = {
-
+export const TokenService = {
   fetch_details: async () => {
-    let _totalSupply = await totalSupply();
-    let _name = await name();
-    let _symbol = await symbol();
-    let _decimals = await decimals();
-    let _contract_address = await contract_address();
-    
+    const WEB3 = await loadWeb3();
+    let _totalSupply = await totalSupply(WEB3);
+    let _name = await name(WEB3);
+    let _symbol = await symbol(WEB3);
+    let _decimals = await decimals(WEB3);
+    let _contract_address = await contract_address(WEB3);
+
     let contract_details = {
       _totalSupply,
       _name,
       _symbol,
       _decimals,
-      _contract_address
+      _contract_address,
     };
     return contract_details;
   },
-
-
 };

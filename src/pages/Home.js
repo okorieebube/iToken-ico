@@ -5,6 +5,7 @@ import { fetchTokenDetails } from "../providers/redux/_actions/token-actions";
 import { fetchCrowdsaleDetails } from "../providers/redux/_actions/crowdsale-actions";
 import Banner from "./components/Banner";
 import AboutToken from "./components/AboutToken";
+import { loadWeb3 } from "../lib/web3/load-web3";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -29,7 +30,8 @@ const Home = () => {
     crowdsale && setCrowdsaleDetails(crowdsale);
   }, [crowdsale]);
 
-  useEffect(() => {
+  useEffect( () => {
+    // loadWeb3()
     dispatch(fetchTokenDetails());
     dispatch(fetchCrowdsaleDetails());
   }, []);
