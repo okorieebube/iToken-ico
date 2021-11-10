@@ -1,7 +1,8 @@
 import Validator from "validatorjs";
 import React, { useState } from "react";
 import { __crowdsale } from "../../lib/validation/schema/crowdsale-schema";
-import {MapFormErrors} from "../../lib/validation/handlers/error-handlers"
+import toast from "react-hot-toast";
+import {MapFormErrors, ToastFormErrors} from "../../lib/validation/handlers/error-handlers"
 
 const Crowdsale = ({ crowdsaleDetails, tokenDetails }) => {
   const [formErrors, setFormErrors] = useState({});
@@ -13,14 +14,17 @@ const Crowdsale = ({ crowdsaleDetails, tokenDetails }) => {
     e.preventDefault();
     const data = new FormData(e.target);
     const values = Object.fromEntries(data.entries());
-    console.log(values);
+    // console.log(values);
     let validation = new Validator(values, rules);
 
     validation.setAttributeNames(attributes);
 
     validation.fails(() => {
       setFormErrors(MapFormErrors(validation.errors.errors));
-      console.log(validation.errors.errors)
+      console.log(formErrors)
+      toast.error(formErrors)
+      
+      // ToastFormErrors(formErrors)
     });
 
     if (validation.passes()) {
@@ -74,7 +78,7 @@ const Crowdsale = ({ crowdsaleDetails, tokenDetails }) => {
                   {/* <input name="ref" type="hidden" defaultValue /> */}
                   <div className="input-group">
                     <input
-                      name="address"
+                      name="amount"
                       className="input form-control"
                       type="number"
                       placeholder="Input ETH amount"

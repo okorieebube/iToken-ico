@@ -1,9 +1,9 @@
 export const __crowdsale = {
     rules: {
-        address: 'required|number',
+        amount: 'required|number',
     },
 
     attributes: {
-        address: 'Eth wallet address',
+        amount: 'Eth amount',
     }
 }

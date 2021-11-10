@@ -2,7 +2,8 @@ import toast from "react-hot-toast";
 
 export const ToastFormErrors = (errors) => {
     for (const error in errors) {
-        toast.error(errors[error].message)
+        toast.error(error)
+        // toast.error(errors[error].message)
     }
 }
 
