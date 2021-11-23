@@ -6,6 +6,7 @@ import { fetchCrowdsaleDetails } from "../providers/redux/_actions/crowdsale-act
 import Banner from "./components/Banner";
 import AboutToken from "./components/AboutToken";
 import { loadWeb3 } from "../lib/web3/load-web3";
+import toast from "react-hot-toast";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ const Home = () => {
     (state) => state.FetchCrowdsaleArtifact
   );
   const [crowdsaleDetails, setCrowdsaleDetails] = useState({});
+  toast.success("Hello World")
 
   useEffect(() => {
     token && setTokenDetails(token);
