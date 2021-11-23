@@ -1,8 +1,11 @@
 import Validator from "validatorjs";
 import React, { useState } from "react";
 import { __crowdsale } from "../../lib/validation/schema/crowdsale-schema";
-import toast from "react-hot-toast";
-import {MapFormErrors, ToastFormErrors} from "../../lib/validation/handlers/error-handlers"
+import {
+  MapFormErrors,
+  MapFormErrorsInArr,
+  ToastFormErrors,
+} from "../../lib/validation/handlers/error-handlers";
 
 const Crowdsale = ({ crowdsaleDetails, tokenDetails }) => {
   const [formErrors, setFormErrors] = useState({});
@@ -14,16 +17,17 @@ const Crowdsale = ({ crowdsaleDetails, tokenDetails }) => {
     e.preventDefault();
     const data = new FormData(e.target);
     const values = Object.fromEntries(data.entries());
-    // console.log(values);
+    console.log(values);
     let validation = new Validator(values, rules);
 
     validation.setAttributeNames(attributes);
 
     validation.fails(() => {
-      setFormErrors(MapFormErrors(validation.errors.errors));
-      console.log(formErrors)
-      toast.error(formErrors)
-      
+      console.log(validation.errors.errors);
+      ToastFormErrors(MapFormErrorsInArr(validation.errors.errors));
+      // setFormErrors(MapFormErrors(validation.errors.errors));
+      // toast.error(formErrors)
+
       // ToastFormErrors(formErrors)
     });
 

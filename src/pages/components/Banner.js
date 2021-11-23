@@ -42,7 +42,7 @@ const Banner = ({tokenDetails, crowdsaleDetails}) => {
                       </div>
                     </div>
                     <div className="col-sm-8 col-md-4 col-lg-5 bid-main d-none d-sm-block order-md-1 my-2 mx-2 mx-lg-3">
-                      <p className="bid body-mb">Pre-sale Price</p>
+                      <p className="bid body-mb">Crowdsale Price</p>
                       <h3 className="heading-h2 bid-head">{_rate} {_symbol}</h3>
                       <p className="dollor body-mb">= 1 ETH</p>
                     </div>
@@ -60,7 +60,7 @@ const Banner = ({tokenDetails, crowdsaleDetails}) => {
                       data-scroll
                       className="btn-fill btn-create order-lg-1 my-2 mx-2 mx-lg-3"
                     >
-                      Pre-sale
+                      Crowdsale
                     </a>
                   </div>
                 </div>

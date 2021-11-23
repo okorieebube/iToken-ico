@@ -1,13 +1,12 @@
 import toast from "react-hot-toast";
 
 export const ToastFormErrors = (errors) => {
-    for (const error in errors) {
-        toast.error(error)
-        // toast.error(errors[error].message)
-    }
+    errors.forEach(e => {
+        toast.error(e)
+    });
 }
 
-export const MapFormErrors = (errors) =>  {
+export const MapFormErrorsInObj = (errors) =>  {
     let object = {}
     if (errors) {
         for (const [key, value] of Object.entries(errors)) {
@@ -15,4 +14,7 @@ export const MapFormErrors = (errors) =>  {
         }
     }
     return object;
+}
+export const MapFormErrorsInArr = (errors) =>  {
+    return Object.values(errors)
 }
