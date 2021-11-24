@@ -9,12 +9,10 @@ export const UserService = {
     const WEB3 = await loadWeb3();
     let network = await loadNetwork(WEB3);
     if (network !== "private") {
-      let error = { error: "You are connected to the wrong network" };
+      let error = { error:true, message: "You are connected to the wrong network" };
       ToastFormErrors(MapFormErrorsInArr(error));
     }
     let user = await loadAccounts(WEB3);
-    console.log({ network });
-    console.log(user);
     return user;
   },
 };

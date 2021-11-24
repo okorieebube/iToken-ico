@@ -1,6 +1,13 @@
-// import { token_contract } from "../../lib/web3/contracts/load_contracts";
-import { rate, wallet,buyTokens } from "../../lib/web3/contracts/crowdsale_methods";
-import { loadWeb3 } from "../../lib/web3/load-web3";
+import {
+  SimpleToastError,
+  SimpleToastSuccess,
+} from "../../lib/validation/handlers/error-handlers";
+import {
+  rate,
+  wallet,
+  buyTokens,
+} from "../../lib/web3/contracts/crowdsale_methods";
+import { loadAccounts, loadWeb3 } from "../../lib/web3/load-web3";
 
 export const CrowdsaleService = {
   fetch_details: async () => {
@@ -12,13 +19,17 @@ export const CrowdsaleService = {
       _rate,
       _wallet,
     };
-    console.log(contract_details);
     return contract_details;
   },
-  buyTokens:async(amt)=> {
+  buyTokens: async (amt) => {
     const WEB3 = await loadWeb3();
-    let purchase = await buyTokens(WEB3,amt);
-    console.log(purchase)
-
-  }
+    const user = await loadAccounts();
+    let purchase = await buyTokens(WEB3, amt, user);
+    if (purchase.error === true) {
+      SimpleToastError(purchase.message);
+    } else {
+      SimpleToastSuccess(purchase.message);
+    }
+    return purchase;
+  },
 };

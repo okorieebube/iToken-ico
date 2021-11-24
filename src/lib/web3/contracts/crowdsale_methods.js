@@ -31,8 +31,8 @@ export const wallet = async (web3) => {
   }
 };
 
-export const buyTokens = async (web3, amt) => {
-  console.log('calling services...')
+export const buyTokens = async (web3, amt, user) => {
+  console.log("buying token...");
   let networkId = await web3.eth.net.getId();
   let deployedNetwork = crowdsale.networks[networkId];
   try {
@@ -40,9 +40,15 @@ export const buyTokens = async (web3, amt) => {
       crowdsale.abi,
       deployedNetwork.address
     );
-    return await contract.methods.buyTokens(amt).send();
+    let amt_in_bn = web3.utils.toBN(amt);
+    let buyTokens = await contract.methods
+      .buyTokens(user)
+      .send({ from: user, value: amt_in_bn, gas: 5500000 });
+    console.log(buyTokens);
+    if (buyTokens.transactionHash) {
+      return { error: false, message: "ITK Tokens purchased successfully" };
+    }
   } catch (err) {
-    return err;
+    return { error: true, message: err.message };
   }
 };
-

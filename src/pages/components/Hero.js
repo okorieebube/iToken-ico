@@ -1,11 +1,18 @@
-import { useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { ConnectWallet } from "../../providers/redux/_actions/user-actions";
 import Banner from "./Banner";
 const Hero = ({ crowdsaleDetails, tokenDetails }) => {
   const dispatch = useDispatch();
 
-  const { success: userWallet } = useSelector((state) => state.UserAuthReducer);
-  const [tokenDetails, setTokenDetails] = useState({});
+  const { data } = useSelector((state) => state.UserAuth);
+  const [userWalletStatus, setUserWalletStatus] = useState(null);
+
+  useEffect(() => {
+    if (data?.userWallet) {
+      setUserWalletStatus("Connected");
+    }
+  }, [data]);
 
   const handleConnectWallet = (e) => {
     e.preventDefault();
@@ -91,19 +98,14 @@ const Hero = ({ crowdsaleDetails, tokenDetails }) => {
                         color: "#366ce3",
                       }}
                     >
-                      <p onClick={handleConnectWallet} className="body-sb language px-2">Connect wallet</p>
-                    </button>
-                    <button
-                    disabled
-                      className="language-a d-flex align-center px-3 py-1 align-items-center"
-                      data-bs-toggle="collapse"
-                      style={{
-                        border: "1px solid #366ce3",
-                        borderRadius: 16,
-                        color: "#366ce3",
-                      }}
-                    >
-                      <p onClick={handleConnectWallet} className="body-sb language px-2">Connected</p>
+                      <p
+                        onClick={handleConnectWallet}
+                        className="body-sb language px-2"
+                      >
+                        {userWalletStatus !== null
+                          ? userWalletStatus
+                          : "Connect wallet"}
+                      </p>
                     </button>
                   </li>
                 </ul>

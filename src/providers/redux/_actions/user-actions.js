@@ -1,34 +1,26 @@
-
 import { UserService } from "../../services/user-services";
-import {UserAuthConstants} from "../_constants/user-auth-constants"
+import { UserAuthConstants } from "../_constants/user-auth-constants";
 
-
-const {
-    USER_AUTH_REQUEST,
-    USER_AUTH_SUCCESS,
-    USER_AUTH_FAILURE,
-
-} = UserAuthConstants;
+const { USER_AUTH_REQUEST, USER_AUTH_SUCCESS, USER_AUTH_FAILURE } =
+  UserAuthConstants;
 
 export const ConnectWallet = () => (dispatch) => {
-    console.log('connecting to user wallet...')
+  console.log("connecting to user wallet...");
 
-    dispatch({ type: USER_AUTH_REQUEST });
+  dispatch({ type: USER_AUTH_REQUEST });
 
-    UserService.loadUserAccount()
+  UserService.loadUserAccount()
     .then((response) => {
-        console.log({response})
       return dispatch({
         type: USER_AUTH_SUCCESS,
-        payload: response
+        payload:{ userWallet: response} ,
       });
     })
     .catch((error) => {
-        console.log({error})
-        return dispatch({
-          type: USER_AUTH_FAILURE,
-          payload: error
-        });
+      console.log({ error });
+      return dispatch({
+        type: USER_AUTH_FAILURE,
+        payload: error,
+      });
     });
-    
 };

@@ -9,7 +9,7 @@ const {
 export function UserAuthReducer(state = {}, action) {
   switch (action.type) {
     case USER_AUTH_REQUEST:
-      return { ...state, loading: true };
+      return { ...state, loading: true, data: {} };
     case USER_AUTH_SUCCESS:
       return { ...state, data: action.payload, loading: false };
     case USER_AUTH_FAILURE:

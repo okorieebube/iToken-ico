@@ -26,7 +26,7 @@ export const loadWeb3 = async () => {
 export const loadAccounts = async (web3) => {
   const ethereum = await window.ethereum;
   const accounts = await ethereum.request({ method: "eth_requestAccounts" });
-  console.log({ logged_in: accounts[0] });
+  // console.log({ logged_in: accounts[0] });
   return accounts[0];
 };
 

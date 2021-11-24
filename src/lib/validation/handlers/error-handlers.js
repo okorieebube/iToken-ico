@@ -18,3 +18,11 @@ export const MapFormErrorsInObj = (errors) =>  {
 export const MapFormErrorsInArr = (errors) =>  {
     return Object.values(errors)
 }
+
+
+export const SimpleToastError = (msg) => {
+        toast.error(msg)
+}
+export const SimpleToastSuccess = (msg) => {
+        toast.success(msg)
+}

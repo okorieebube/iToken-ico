@@ -31,20 +31,22 @@ export const fetchCrowdsaleDetails = () => (dispatch) => {
     
 };
 
-export const buyTokens = (amount) => (dispatch) => {
+export const buyTokens =  (amount) => async (dispatch) => {
   console.log('buying tokens from crowdsale...')
   dispatch({ type: BUY_TOKENS_REQUEST });
 
-  CrowdsaleService.buyTokens(amount)
-  .then((response) => {
-      console.log({response})
+  let res = await CrowdsaleService.buyTokens(amount);
+  console.log(res)
+  if(res.error === true){
     return dispatch({
-      type: BUY_TOKENS_SUCCESS,
-      payload: response
+      type: BUY_TOKENS_FAILURE,
+      payload:{ error: res.message}
     });
-  })
-  .catch((error) => {
-      console.log({error})
+  }else if(res.error === false){
+  return dispatch({
+    type: BUY_TOKENS_SUCCESS,
+    payload:{ error: res.message}
   });
+  }
 
 }

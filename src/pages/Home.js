@@ -27,10 +27,6 @@ const Home = () => {
   }, [token]);
 
   useEffect(() => {
-    if (crowdsale) {
-      console.log(crowdsale);
-    }
-
     crowdsale && setCrowdsaleDetails(crowdsale);
   }, [crowdsale]);
 
