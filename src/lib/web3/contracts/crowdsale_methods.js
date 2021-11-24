@@ -30,3 +30,19 @@ export const wallet = async (web3) => {
     return err;
   }
 };
+
+export const buyTokens = async (web3, amt) => {
+  console.log('calling services...')
+  let networkId = await web3.eth.net.getId();
+  let deployedNetwork = crowdsale.networks[networkId];
+  try {
+    const contract = new web3.eth.Contract(
+      crowdsale.abi,
+      deployedNetwork.address
+    );
+    return await contract.methods.buyTokens(amt).send();
+  } catch (err) {
+    return err;
+  }
+};
+

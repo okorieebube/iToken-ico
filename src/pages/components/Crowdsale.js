@@ -2,16 +2,17 @@ import Validator from "validatorjs";
 import React, { useState } from "react";
 import { __crowdsale } from "../../lib/validation/schema/crowdsale-schema";
 import {
-  MapFormErrors,
   MapFormErrorsInArr,
   ToastFormErrors,
 } from "../../lib/validation/handlers/error-handlers";
+import { useDispatch } from 'react-redux'
+import { buyTokens } from "../../providers/redux/_actions/crowdsale-actions";
 
 const Crowdsale = ({ crowdsaleDetails, tokenDetails }) => {
-  const [formErrors, setFormErrors] = useState({});
   let { _rate, _wallet } = crowdsaleDetails;
   let { _totalSupply } = tokenDetails;
   const { rules, attributes } = __crowdsale;
+  const dispatch = useDispatch()
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,17 +23,13 @@ const Crowdsale = ({ crowdsaleDetails, tokenDetails }) => {
 
     validation.setAttributeNames(attributes);
 
-    validation.fails(() => {
-      console.log(validation.errors.errors);
+    if (validation.fails()) {
       ToastFormErrors(MapFormErrorsInArr(validation.errors.errors));
-      // setFormErrors(MapFormErrors(validation.errors.errors));
-      // toast.error(formErrors)
-
-      // ToastFormErrors(formErrors)
-    });
+    }
 
     if (validation.passes()) {
       console.log("passed");
+      dispatch(buyTokens(values.amount));
     }
   };
   return (
@@ -93,9 +90,6 @@ const Crowdsale = ({ crowdsaleDetails, tokenDetails }) => {
                   </div>
                 </form>
               </div>
-              <p className="text-danger fs-12 mt-1">
-                {formErrors.password?.message}
-              </p>
             </div>
           </div>
         </div>

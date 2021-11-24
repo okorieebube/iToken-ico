@@ -1,6 +1,6 @@
 export const __crowdsale = {
     rules: {
-        amount: 'required|number',
+        amount: 'required|numeric',
     },
 
     attributes: {

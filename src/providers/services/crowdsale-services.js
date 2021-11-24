@@ -1,5 +1,5 @@
 // import { token_contract } from "../../lib/web3/contracts/load_contracts";
-import { rate, wallet } from "../../lib/web3/contracts/crowdsale_methods";
+import { rate, wallet,buyTokens } from "../../lib/web3/contracts/crowdsale_methods";
 import { loadWeb3 } from "../../lib/web3/load-web3";
 
 export const CrowdsaleService = {
@@ -15,4 +15,10 @@ export const CrowdsaleService = {
     console.log(contract_details);
     return contract_details;
   },
+  buyTokens:async(amt)=> {
+    const WEB3 = await loadWeb3();
+    let purchase = await buyTokens(WEB3,amt);
+    console.log(purchase)
+
+  }
 };

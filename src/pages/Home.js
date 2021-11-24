@@ -18,7 +18,6 @@ const Home = () => {
     (state) => state.FetchCrowdsaleArtifact
   );
   const [crowdsaleDetails, setCrowdsaleDetails] = useState({});
-  toast.success("Hello World")
 
   useEffect(() => {
     token && setTokenDetails(token);
@@ -33,7 +32,7 @@ const Home = () => {
   }, [crowdsale]);
 
   useEffect( () => {
-    // loadWeb3()
+    loadWeb3()
     dispatch(fetchTokenDetails());
     dispatch(fetchCrowdsaleDetails());
   }, []);
@@ -253,39 +252,6 @@ const Home = () => {
                   Whitelisted addresses can claim airdrop reward on the official
                   website (iToken.io). The reward for a single address is 10-50
                   OS tokens.
-                </li>
-              </ul>
-            </div>
-            <div className="shadow py-3 px-4 mb-4" style={{ borderRadius: 24 }}>
-              <div className="heading-h4">Community airdrop</div>
-              <ul className="text-muted">
-                <li>
-                  <span className="text-primary me-2">●</span>
-                  Quantity: 3,000,000 OS (15%)
-                </li>
-                <li>
-                  <span className="text-primary me-2">●</span>
-                  Airdrop rules: iToken will start community airdrop activities
-                  at 20:30 (UTC+8) on September 27, 2021, and the airdrop time
-                  is 15 days. Community users can participate in the airdrop by
-                  submitting the ETH wallet address on the iToken Foundation
-                  website (iToken.foundation). The initial amount of each
-                  address is 10 OS. The airdrop is completely free, and the
-                  airdrop rewards will be distributed to the submitted address
-                  after the airdrop is over. Airdrop participation addresses are
-                  estimated to be 200,000. If the total airdrop award exceeds
-                  the quantity for airdrop, the airdrop event will end early. If
-                  there are still unclaimed OS tokens after the airdrop ends,
-                  the unclaimed part will be permanently destroyed.
-                </li>
-                <li>
-                  <span className="text-primary me-2">●</span>
-                  Invitation rules: Users can get additional token rewards by
-                  inviting friends to participate in the airdrop. You can get 10
-                  OS tokens for each friend you invite. You can invite up to 50
-                  friends, and get up to 500 OS tokens. The quantity for airdrop
-                  is limited, and OS issuance is small. The estimated price of
-                  OS is $50. Hurry up and share it with your friends.
                 </li>
               </ul>
             </div>
