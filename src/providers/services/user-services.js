@@ -1,21 +1,20 @@
-import { Request } from "../api/http";
+import {
+  MapFormErrorsInArr,
+  ToastFormErrors,
+} from "../../lib/validation/handlers/error-handlers";
+import { loadWeb3, loadAccounts, loadNetwork } from "../../lib/web3/load-web3";
 
-export const userService = {
-    signup
-}
-
-
-const authHeaders = {
-    'Accept' : 'application/json',
-    'Content-Type' : 'application/json',
-}
-
-async function signup(data, type) {
-    const request = {
-        config: {
-            headers : authHeaders
-        },
-        payload: data
+export const UserService = {
+  loadUserAccount: async () => {
+    const WEB3 = await loadWeb3();
+    let network = await loadNetwork(WEB3);
+    if (network !== "private") {
+      let error = { error: "You are connected to the wrong network" };
+      ToastFormErrors(MapFormErrorsInArr(error));
     }
-    return await Request.post(`${type}/signup`, request)
-}
+    let user = await loadAccounts(WEB3);
+    console.log({ network });
+    console.log(user);
+    return user;
+  },
+};
